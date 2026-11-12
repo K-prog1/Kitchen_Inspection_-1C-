@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Проверка кухонь</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap">
+<style>
+:root{--bg:#f2f4f7;--sf:#fff;--ink:#17202b;--mut:#5b6877;--ln:#d3d9e1;--cr:#b3261e;--wr:#9a6200;--in:#1f6f8b;--bot:#cfe3ec;--botl:#1f6f8b;--ff:#dcdcdc;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10161d;--sf:#18212b;--ink:#e8edf2;--mut:#9aa8b6;--ln:#2b3745;--cr:#ff8a80;--wr:#f0b45a;--in:#6fb7d3;--bot:#274355;--botl:#6fb7d3;--ff:#3a434d;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#10161d;--sf:#18212b;--ink:#e8edf2;--mut:#9aa8b6;--ln:#2b3745;--cr:#ff8a80;--wr:#f0b45a;--in:#6fb7d3;--bot:#274355;--botl:#6fb7d3;--ff:#3a434d;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "IBM Plex Sans","Segoe UI",system-ui,sans-serif}
+main{max-width:980px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:1.7rem;margin:0 0 4px}h2{font-size:1.05rem;margin:28px 0 10px}
+.lead,.mut{color:var(--mut)}.lead{margin:0 0 18px;max-width:62ch}
+.load{display:flex;flex-wrap:wrap;gap:8px}
+.btn,button{font:inherit;background:var(--sf);color:var(--ink);border:1px solid var(--ln);border-radius:6px;padding:8px 14px;cursor:pointer}
+.btn.pri{background:var(--in);color:var(--bg);border-color:var(--in);font-weight:600}
+.btn:focus-within,button:focus-visible,.f:focus-visible{outline:2px solid var(--in);outline-offset:2px}
+#err{margin-top:12px;color:var(--cr)}
+.sum{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:20px 0 0}
+.sum div{background:var(--sf);border:1px solid var(--ln);border-radius:6px;padding:10px 12px}
+.sum dt{color:var(--mut);font-size:.85rem}.sum dd{margin:0;font-weight:600}
+.cnt{display:flex;flex-wrap:wrap;gap:16px;margin:14px 0 0;font-weight:600}
+.cr{color:var(--cr)}.wr{color:var(--wr)}.in{color:var(--in)}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:20px;align-items:start}
+@media(max-width:760px){.grid{grid-template-columns:1fr}}
+ul{list-style:none;margin:0;padding:0}
+.f{background:var(--sf);border:1px solid var(--ln);border-left:4px solid var(--in);border-radius:6px;padding:10px 12px;margin-bottom:8px;cursor:pointer}
+.f.critical{border-left-color:var(--cr)}.f.warning{border-left-color:var(--wr)}
+.f small{display:block;color:var(--mut)}
+svg{width:100%;height:auto;background:var(--sf);border:1px solid var(--ln);border-radius:6px}
+.room{fill:none;stroke:var(--ln);stroke-width:.8}.bot{fill:var(--bot);stroke:var(--botl);stroke-width:.5}
+.top{fill:none;stroke:var(--mut);stroke-width:.6;stroke-dasharray:2 1.5}.ff{fill:var(--ff);stroke:var(--mut);stroke-width:.3}
+.hl{stroke:var(--cr)!important;stroke-width:1.6!important}.lb{font-size:7px;fill:var(--mut)}
+.leg{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;font-size:.85rem;color:var(--mut)}
+.leg i{display:inline-block;width:14px;height:10px;margin-right:5px;border:1px solid var(--botl);background:var(--bot)}
+.leg i.t{background:none;border:1px dashed var(--mut)}.leg i.g{background:var(--ff);border-color:var(--mut)}
+.scroll{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{text-align:left;padding:6px 10px;border-bottom:1px solid var(--ln);white-space:nowrap}th{color:var(--mut);font-weight:400}
+.meas{display:flex;flex-wrap:wrap;gap:12px}.meas label{display:flex;flex-direction:column;font-size:.85rem;color:var(--mut)}input[type=number]{font:inherit;padding:6px 8px;border:1px solid var(--ln);border-radius:6px;background:var(--sf);color:var(--ink);width:130px}.dl details{margin:4px 0}.dl img{max-width:100%;border:1px solid var(--ln);border-radius:6px;margin-top:8px}.ck li{margin:6px 0}#docs{margin-top:8px}
+</style></head><body><main>
+<h1>Проверка кухонь</h1>
+<p class="lead">Загрузите проект из конструктора (файл .dbs). Проверка выполняется прямо в браузере, файл никуда не отправляется.</p>
+<p class="mut" id="devlink" hidden>Для разработчика: <a href="/docs">документация API</a>, <a href="/redoc">ReDoc</a>.</p>
+<div class="load"><label class="btn pri"><input type="file" id="file" accept=".dbs,.json" hidden>Выбрать файл проекта</label>
+<button id="s1">Пример: Г-образная, 19 модулей</button><button id="s2">Пример: 6 нижних модулей</button></div>
+<div id="err" role="alert"></div><div id="out" hidden></div>
+<section id="docs"><h2>Документы сделки</h2>
+<p class="lead">Добавьте сканы и PDF из сделки: договор, замер, спецификацию, цветной и чёрно-белый макеты. Содержимое сканов программа не читает: она проверяет набор документов и имена файлов, а подписи и текст вы подтверждаете сами.</p>
+<div class="load"><label class="btn"><input type="file" id="dfile" multiple accept="image/*,.pdf" hidden>Добавить документы</label><button id="dclr">Очистить список</button></div>
+<div id="dout"></div>
+<h2>Замер и макет</h2><div class="meas"><label>Ширина, мм<input id="mw" type="number"></label><label>Глубина, мм<input id="md" type="number"></label><label>Высота, мм<input id="mh" type="number"></label><label>Допуск, мм<input id="mt" type="number" value="10"></label></div><div id="mout" class="mut"></div></section>
+</main>
+<script>
+const SAMPLES={"s1":{"name":"Глянцевый Металик / Гладкое дерево","room":[3200,4000,2500],"ft":1237,"fb":1238,"mods":[["bottom","corner_straight",1000,720,600,270,30,0,17500,"НМ_М-0053","Стол угловой 1000 левый (38 мм)",0,0],["bottom","common",450,720,600,290.0,82.5,270,7330,"ZZ_М-0153","Комплект для ПММ 450 (38 мм)",0,0],["bottom","common",600,720,600,190,30,0,18090,"НМ_М-0072","Стол с 3-мя ящиками 600 (38 мм)",0,0],["bottom","common",600,720,600,130,30,0,11340,"НМ_М-0078","Стол под встраиваемую технику 600 (38 мм)",0,1],["bottom","common",500,720,600,290.0,130,270,13850,"НМ_М-0068","Стол с двумя ящиками 500 (38 мм)",0,0],["bottom","common",500,720,600,290.0,180,270,13850,"НМ_М-0068","Стол с двумя ящиками 500 (38 мм)",0,0],["bottom","end_radius_facade",320,720,600,290.0,221,270,19750,"НМ_М-0080","Нижний модуль торцевой радиусный правый (38 мм)",0,0],["bottom","end_corner_facade",300,720,600,85,30,0,10450,"НМ_М-0079","Нижний модуль торцевой с дверцей левый (38 мм)",0,0],["top","corner",600,720,320,290,30,0,7600,"НМ_М-0133","Шкаф угловой 600",0,0],["top","common",450,720,320,304.0,82.5,270,5850,"НМ_М-0094","Шкаф 450",0,0],["top","common",500,720,320,304.0,130,270,5950,"НМ_М-0095","Шкаф 500",0,0],["top","common",500,720,320,304.0,180,270,5950,"НМ_М-0095","Шкаф 500",0,0],["top","common",400,720,320,240,16,0,5300,"НМ_М-0093","Шкаф 400",0,0],["top","common",600,720,320,190,16,0,7150,"НМ_М-0096","Шкаф 600",0,0],["top","common",600,720,320,130,16,0,8410,"НМ_М-0122","Шкаф горизонтальный 600",0,0],["top","end_radius_facade",320,720,320,84,16,0,11900,"НМ_М-0136","Шкаф торцевой радиусный",0,0],["top","end_radius_open",300,720,300,305.0,220,270,2850,"НМ_М-0135","Шкаф торцевой",0,0],["top","false_facade_facade",18,720,320,304.0,237.9,90,2550,"ZZ_M-0167","Фасад торцевой левый 320*720",0,0],["bottom","false_facade_facade",20,720,360,69,18,0,2300,"ZZ_М-0159","Фальш-фасад для торцевого стола (левый)",0,0]]},"s2":{"name":"Глянцевый Металик / Гладкое дерево","room":[3200,4000,2500],"ft":1237,"fb":1238,"mods":[["bottom","common",800,720,600,40,30,0,15820,"НМ_М-0062","Стол 800 (38 мм)",0,0],["bottom","common",400,720,600,100,30,0,13860,"НМ_М-0064","Стол с 4мя ящиками 400 (38 мм)",0,0],["bottom","common",800,720,600,160,30,0,15820,"НМ_М-0062","Стол 800 (38 мм)",0,0],["bottom","common",600,720,600,230,30,0,15740,"НМ_М-0071","Стол с двумя ящиками 600 (38 мм)",0,0],["bottom","corner_straight",1000,720,600,290.0,50,270,17500,"НМ_М-0053","Стол угловой 1000 правый (38 мм)",0,0],["bottom","common",800,720,600,290.0,140,270,15820,"НМ_М-0062","Стол 800 (38 мм)",0,0]]}};
+const LV={critical:'Критично',warning:'Предупреждение',info:'Подсказка'},GL={bottom:'нижние',top:'верхние',other:'прочие'};
+const SH={none:'нет нижних модулей',unknown:'не определена',straight:'прямая',L:'Г-образная',U:'П-образная',parallel:'двухрядная',other:'сложная форма'};
+const KD={common:'обычный',corner:'угловой',corner_straight:'угловой прямой',end_radius_facade:'торцевой радиусный',end_radius_open:'торцевой радиусный открытый',false_facade_facade:'фальш-фасад'};
+const EXP={straight:0,parallel:0,L:1,U:2};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const num=v=>Number.isInteger(v)?v:(typeof v==='string'&&/^-?\d+$/.test(v.trim())?+v:null);
+const corner=m=>m.kind==='corner'||m.kind==='corner_straight',ff=m=>m.kind.startsWith('false_facade'),rad=m=>m.kind.includes('radius');
+const L=m=>'«'+m.name+'» ('+m.code+')',r1=v=>Math.round(v*10)/10;
+const horiz=m=>m.rot===0||m.rot===180;
+function fp(m){if(m.rot===null)return null;const a=m.w/20,d=m.d/20,[hx,hz]=horiz(m)?[a,d]:[d,a];return[m.x-hx,m.z-hz,m.x+hx,m.z+hz]}
+function al(m){const a=m.w/20,c=horiz(m)?m.x:m.z;return[c-a,c+a]}
+function rot(o){const deg=((o.rotation||{})._y||0)*180/Math.PI,s=Math.round(deg/90)*90;return Math.abs(deg-s)>1?null:((s%360)+360)%360}
+function parse(raw){
+ if(!raw||typeof raw!=='object'||Array.isArray(raw))throw new Error('Это не проект конструктора: ожидался объект JSON.');
+ for(const k of['room','objects','project_settings'])if(!(k in raw))throw new Error('В файле нет раздела «'+k+'»: это не проект конструктора или формат изменился.');
+ const notes=[],r=raw.room;if(num(raw.version)!==4)notes.push('Версия формата файла: '+raw.version+'. Проверялась только версия 4, результат может быть неточным.');
+ if(!(r&&r.width&&r.depth&&r.height))throw new Error('В разделе «room» нет размеров комнаты.');
+ const st=raw.project_settings||{},sel=st.selected_materials||{},t=sel.top||{},b=sel.bottom||{};
+ const p={name:st.name||'',room:{w:+r.width,d:+r.depth,h:+r.height},mods:[],ft:num(t.facades),fb:num(b.facades),notes};
+ raw.objects.forEach((o,i)=>{if(o.type!=='Cabinet')return;const c=o.cabinet;if(!c||typeof c!=='object')throw new Error('У объекта №'+i+' нет данных модуля.');
+  let g=o.cabinet_group||o.group;if(g!=='bottom'&&g!=='top'){notes.push('Модуль №'+i+' «'+o.name+'»: неизвестная группа, в проверках расположения не участвует.');g='other'}
+  const q=o.position||{};p.mods.push({i,code:String(o.code||'').trim(),name:o.name||'',g,kind:c.type||o.cabinet_type||'',w:+c.width||0,h:+c.height||0,d:+c.depth||0,x:+q.x||0,z:+q.z||0,rot:rot(o),price:+o.price||0})});
+ return p}
+function layout(p){
+ const bot=p.mods.filter(m=>m.g==='bottom'&&!ff(m));let shape='none';
+ if(bot.length){const rs=[...new Set(bot.filter(m=>!corner(m)&&m.rot!==null).map(m=>m.rot))].sort((a,b)=>a-b);
+  shape=!rs.length?'unknown':rs.length===1?'straight':rs.length===2?((rs[1]-rs[0])%180===90?'L':'parallel'):rs.length===3?'U':'other'}
+ const runs=[];for(const g of['bottom','top']){const by={};p.mods.filter(m=>m.g===g&&!ff(m)&&m.rot!==null).forEach(m=>(by[m.rot]=by[m.rot]||[]).push(m));
+  for(const k of Object.keys(by).sort((a,b)=>a-b))runs.push({g,mods:by[k].sort((a,b)=>al(a)[0]+al(a)[1]-al(b)[0]-al(b)[1])})}
+ return{shape,runs,bc:p.mods.filter(m=>m.g==='bottom'&&corner(m))}}
+const RULES=[
+['DATA-01','critical','Цена модуля больше нуля',p=>p.mods.filter(m=>m.price<=0).map(m=>['У модуля '+L(m)+' нулевая или отрицательная цена.',[m.i]])],
+['DATA-02','critical','У модуля есть артикул',p=>p.mods.filter(m=>!m.code).map(m=>['У модуля «'+m.name+'» нет артикула.',[m.i]])],
+['LAYOUT-01','critical','Модули в пределах комнаты',p=>{const W=p.room.w/10,D=p.room.d/10,o=[];for(const m of p.mods){const r=fp(m);if(!r)continue;const v=Math.max(-r[0],-r[1],r[2]-W,r[3]-D);if(v>1)o.push(['Модуль '+L(m)+' выходит за пределы комнаты на '+Math.round(v*10)+' мм.',[m.i]])}return o}],
+['LAYOUT-02','warning','Нет зазоров между модулями в ряду',(p,l)=>{const o=[];for(const r of l.runs)for(let k=1;k<r.mods.length;k++){const a=r.mods[k-1],b=r.mods[k],g=(al(b)[0]-al(a)[1])*10;if(g>10)o.push(['Зазор '+Math.round(g)+' мм между модулями '+L(a)+' и '+L(b)+' ('+GL[r.g]+' модули).',[a.i,b.i]])}return o}],
+['LAYOUT-03','critical','Модули не накладываются друг на друга',p=>{const o=[];for(const g of['bottom','top','other']){const s=p.mods.filter(m=>m.g===g&&!ff(m)&&fp(m));for(let i=0;i<s.length;i++)for(let j=i+1;j<s.length;j++){const a=fp(s[i]),b=fp(s[j]),x=Math.min(a[2],b[2])-Math.max(a[0],b[0]),z=Math.min(a[3],b[3])-Math.max(a[1],b[1]);if(x>1&&z>1)o.push(['Модули '+L(s[i])+' и '+L(s[j])+' накладываются ('+Math.round(x*10)+' × '+Math.round(z*10)+' мм).',[s[i].i,s[j].i]])}}return o}],
+['LAYOUT-04','critical','Есть угловой модуль там, где кухня поворачивает',(p,l)=>{const e=EXP[l.shape];return e!==undefined&&l.bc.length<e?[['Форма кухни: '+SH[l.shape]+'. Нижних угловых модулей должно быть не меньше '+e+', найдено '+l.bc.length+'.',[]]]:[]}],
+['LAYOUT-05','warning','Нет лишних угловых модулей',(p,l)=>{const e=EXP[l.shape];return e!==undefined&&l.bc.length>e?[['Форма кухни: '+SH[l.shape]+'. Нижних угловых модулей ожидается '+e+', найдено '+l.bc.length+'.',l.bc.map(m=>m.i)]]:[]}],
+['INFO-01','info','Фасады верха и низа разного цвета',p=>{const t=p.mods.some(m=>m.g==='top'&&!ff(m)),b=p.mods.some(m=>m.g==='bottom'&&!ff(m));return t&&b&&p.ft&&p.fb&&p.ft!==p.fb?[['Фасады верхних и нижних модулей разные (материалы '+p.ft+' и '+p.fb+'): в спецификации должен быть указан второй цвет.',[]]]:[]}],
+['INFO-02','info','В макете есть радиусные модули',p=>{const r=p.mods.filter(rad);return r.length?[['В макете радиусных модулей: '+r.length+'. Проверьте, что радиус указан в спецификации.',r.map(m=>m.i)]]:[]}]];
+function check(p){const l=layout(p),f=[];for(const[code,level,title,fn]of RULES)for(const[msg,mods]of fn(p,l))f.push({code,level,title,msg,mods});
+ const o=['critical','warning','info'];f.sort((a,b)=>o.indexOf(a.level)-o.indexOf(b.level));return{l,f}}
+function plan(p){const W=p.room.w/10,D=p.room.d/10;let b='',g='',t='';
+ for(const m of p.mods){const r=fp(m);if(!r)continue;const c=ff(m)?'ff':m.g==='top'?'top':'bot',
+  e='<rect class="'+c+'" data-i="'+m.i+'" x="'+r1(r[0])+'" y="'+r1(r[1])+'" width="'+r1(r[2]-r[0])+'" height="'+r1(r[3]-r[1])+'"><title>'+esc(m.name)+', '+m.w+' мм</title></rect>';
+  if(c==='top')t+=e;else if(c==='ff')g+=e;else b+=e}
+ return'<svg viewBox="-12 -12 '+(W+24)+' '+(D+24)+'" role="img" aria-label="План-вид кухни"><rect class="room" width="'+W+'" height="'+D+'"/>'+b+g+t+'<text x="'+W/2+'" y="-4" text-anchor="middle" class="lb">задняя стена</text></svg>'+
+ '<div class="leg"><span><i></i>нижние модули</span><span><i class="t"></i>верхние модули</span><span><i class="g"></i>фальш-фасады</span></div>'}
+function show(raw){const err=document.getElementById('err'),out=document.getElementById('out');err.textContent='';
+ try{const p=parse(raw),{l,f}=check(p),n=k=>f.filter(x=>x.level===k).length,price=p.mods.reduce((s,m)=>s+m.price,0);
+  out.innerHTML=(p.notes.length?'<p class="mut">'+p.notes.map(esc).join(' ')+'</p>':'')+
+  '<dl class="sum"><div><dt>Форма кухни</dt><dd>'+SH[l.shape]+'</dd></div><div><dt>Модулей</dt><dd>'+p.mods.length+'</dd></div><div><dt>Сумма</dt><dd>'+price.toLocaleString('ru-RU')+' ₽</dd></div><div><dt>Комната, мм</dt><dd>'+p.room.w+' × '+p.room.d+' × '+p.room.h+'</dd></div></dl>'+
+  '<div class="cnt"><span class="cr">Критично: '+n('critical')+'</span><span class="wr">Предупреждений: '+n('warning')+'</span><span class="in">Подсказок: '+n('info')+'</span></div>'+
+  '<div class="grid"><div><h2>Замечания</h2>'+(f.length?'<ul>'+f.map(x=>'<li class="f '+x.level+'" tabindex="0" data-m="'+x.mods.join(',')+'"><small>'+LV[x.level]+', '+x.code+'</small>'+esc(x.msg)+'</li>').join('')+'</ul><p class="mut">Нажмите на замечание, чтобы подсветить модули на плане.</p>':'<p>Замечаний нет.</p>')+'</div>'+
+  '<div><h2>План-вид</h2>'+plan(p)+'</div></div><h2>Модули</h2><div class="scroll"><table><tr><th>№</th><th>Артикул</th><th>Название</th><th>Группа</th><th>Тип</th><th>Ш × В × Г, мм</th><th>Поворот</th></tr>'+
+  p.mods.map(m=>'<tr><td>'+m.i+'</td><td>'+esc(m.code)+'</td><td>'+esc(m.name)+'</td><td>'+GL[m.g]+'</td><td>'+esc(KD[m.kind]||m.kind)+'</td><td>'+m.w+' × '+m.h+' × '+m.d+'</td><td>'+(m.rot===null?'—':m.rot+'°')+'</td></tr>').join('')+'</table></div>';
+  out.hidden=false;cur=p;renderDocs();
+  out.querySelectorAll('.f').forEach(li=>{const go=()=>{out.querySelectorAll('.hl').forEach(e=>e.classList.remove('hl'));li.dataset.m.split(',').filter(Boolean).forEach(i=>{const e=out.querySelector('svg [data-i="'+i+'"]');if(e)e.classList.add('hl')})};li.onclick=go;li.onkeydown=e=>{if(e.key==='Enter')go()}})
+ }catch(e){out.hidden=true;err.textContent=e.message}}
+function mk(s){return{version:4,room:{width:s.room[0],depth:s.room[1],height:s.room[2]},project_settings:{name:s.name,selected_materials:{top:{facades:s.ft},bottom:{facades:s.fb}}},
+ objects:s.mods.map(a=>({type:'Cabinet',cabinet_group:a[0],name:a[10],code:a[9],price:a[8],position:{x:a[5],z:a[6]},rotation:{_y:a[7]*Math.PI/180},cabinet:{type:a[1],width:a[2],height:a[3],depth:a[4]}}))}}
+async function load(file){try{show(JSON.parse((await file.text()).replace(/^\uFEFF/,'')))}catch(e){document.getElementById('out').hidden=true;document.getElementById('err').textContent='Файл не похож на проект конструктора: это не JSON.'}}
+document.getElementById('file').onchange=e=>{if(e.target.files[0])load(e.target.files[0])};
+document.getElementById('s1').onclick=()=>show(mk(SAMPLES.s1));document.getElementById('s2').onclick=()=>show(mk(SAMPLES.s2));
+let cur=null,docs=[],man={};
+const REQ=[['договор',n=>/договор/.test(n)],['замер',n=>/замер/.test(n)],['спецификация',n=>/спец/.test(n)],['цветной макет',n=>/макет/.test(n)&&/цвет/.test(n)],['чёрно-белый макет',n=>/макет/.test(n)&&/(чб|ч-б|ч\/б|черно)/.test(n)]];
+const SMS=[['договор',/договор/],['заказ',/заказ/],['спецификация',/спец/]];
+const MAN=['Подпись клиента на договоре (если подписано от руки)','Ч/б макет: ФИО клиента, дата и подпись','Замер: на схеме отмечены окна и двери'];
+const nm=s=>s.toLowerCase().replace(/ё/g,'е');
+function docF(){const f=[],ns=docs.map(d=>d.n);if(!docs.length)return f;
+ REQ.forEach(([t,fn])=>{if(!ns.some(fn))f.push(['critical','DOC-01','Нет документа: '+t+'.'])});
+ if(ns.some(n=>/подписан/.test(n)))SMS.forEach(([t,re])=>{const x=ns.filter(n=>re.test(n));
+  if(!x.length)f.push(['critical','DOC-02','Подписание по СМС: нет документа «'+t+'».']);
+  else if(!x.some(n=>/подписан/.test(n)&&/\d{2}-\d{2}-\d{4}/.test(n)))f.push(['warning','DOC-02','В имени файла «'+t+'» нет отметки о подписании по СМС с датой.'])});
+ const nums=[...new Set(ns.flatMap(n=>[...n.matchAll(/№\s*(\d+)/g)].map(m=>m[1])))];
+ if(nums.length>1)f.push(['critical','DOC-03','Номера сделки в именах документов не совпадают: '+nums.join(', ')+'.']);
+ return f}
+function renderMeas(){const g=id=>parseFloat(document.getElementById(id).value),tol=g('mt')||0,o=document.getElementById('mout');
+ if(!cur){o.textContent='Загрузите проект из конструктора, чтобы сравнить размеры.';return}
+ const res=[];for(const[id,t,m]of[['mw','Ширина',cur.room.w],['md','Глубина',cur.room.d],['mh','Высота',cur.room.h]]){const v=g(id);if(isNaN(v))continue;const df=Math.abs(v-m),bad=df>tol;
+  res.push('<li class="f '+(bad?'critical':'info')+'"><small>'+(bad?'Критично, MEAS-01':'Совпадает с макетом')+'</small>'+t+': по замеру '+v+' мм, в макете '+m+' мм'+(bad?', расхождение '+df+' мм.':'.')+'</li>')}
+ o.innerHTML=res.length?'<ul>'+res.join('')+'</ul>':'Введите размеры из замерного листа: сравню с комнатой в макете ('+cur.room.w+' × '+cur.room.d+' × '+cur.room.h+' мм).'}
+function renderDocs(){const o=document.getElementById('dout'),f=docF(),T=REQ.concat([['заказ',n=>/заказ/.test(n)]]);
+ o.innerHTML=(docs.length?'<ul class="dl">'+docs.map(d=>'<li><details><summary>'+esc(d.name)+' <span class="mut">— '+((T.find(([,fn])=>fn(d.n))||[])[0]||'тип не определён')+'</span></summary>'+(d.url?'<img src="'+d.url+'" alt="'+esc(d.name)+'">':'<p class="mut">Предпросмотр доступен только для изображений.</p>')+'</details></li>').join('')+'</ul>':'<p class="mut">Документы пока не добавлены.</p>')+
+ (f.length?'<ul>'+f.map(x=>'<li class="f '+x[0]+'"><small>'+LV[x[0]]+', '+x[1]+'</small>'+esc(x[2])+'</li>').join('')+'</ul>':docs.length?'<p>По именам файлов замечаний нет.</p>':'')+
+ (docs.length?'<h2>Проверьте глазами</h2><ul class="ck">'+MAN.map((t,i)=>'<li><label><input type="checkbox" data-k="'+i+'"'+(man[i]?' checked':'')+'> '+t+'</label></li>').join('')+'</ul>':'');
+ o.querySelectorAll('input[type=checkbox]').forEach(c=>c.onchange=()=>{man[c.dataset.k]=c.checked});renderMeas()}
+async function addDocs(fs){for(const f of fs){if(docs.some(d=>d.name===f.name))continue;
+ const url=f.type.startsWith('image/')?await new Promise(r=>{const x=new FileReader();x.onload=()=>r(x.result);x.onerror=()=>r('');x.readAsDataURL(f)}):'';
+ docs.push({name:f.name,n:nm(f.name),url})}renderDocs()}
+document.getElementById('dfile').onchange=e=>{addDocs([...e.target.files]);e.target.value=''};
+document.getElementById('dclr').onclick=()=>{docs=[];man={};renderDocs()};
+['mw','md','mh','mt'].forEach(id=>document.getElementById(id).oninput=renderMeas);
+addEventListener('dragover',e=>e.preventDefault());addEventListener('drop',e=>{e.preventDefault();const fs=[...e.dataTransfer.files],p=fs.find(f=>/\.(dbs|json)$/i.test(f.name));if(p)load(p);addDocs(fs.filter(f=>f!==p))});
+renderDocs();
+if(/^https?:/.test(location.protocol))document.getElementById('devlink').hidden=false;
+</script></body></html>

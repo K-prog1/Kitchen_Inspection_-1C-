@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "LAYOUT-02": {"enabled": true, "level": "warning", "params": {"gap_tolerance_mm": 10}},
+    "LAYOUT-03": {"params": {"overlap_tolerance_mm": 10}},
+    "INFO-02": {"enabled": false}
+  }
+}

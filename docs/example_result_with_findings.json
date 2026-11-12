@@ -1,0 +1,530 @@
+{
+  "schema_version": "1",
+  "rules_version": "0.1.0",
+  "project": {
+    "name": "Глянцевый Металик / Гладкое дерево",
+    "project_id": 1793935717297,
+    "format_version": 4,
+    "room_mm": {
+      "width": 3200,
+      "depth": 4000,
+      "height": 2500
+    },
+    "module_count": 18,
+    "panel_count": 2,
+    "total_price": 152870.0,
+    "notes": []
+  },
+  "layout": {
+    "shape": "L",
+    "shape_label": "Г-образная",
+    "bottom_corner_count": 0,
+    "top_corner_count": 1,
+    "runs": [
+      {
+        "group": "bottom",
+        "rotation": 0,
+        "modules": [
+          6,
+          2,
+          1
+        ],
+        "start_cm": 70.0,
+        "end_cm": 220.0
+      },
+      {
+        "group": "bottom",
+        "rotation": 270,
+        "modules": [
+          0,
+          3,
+          4,
+          5
+        ],
+        "start_cm": 60.0,
+        "end_cm": 237.0
+      },
+      {
+        "group": "top",
+        "rotation": 0,
+        "modules": [
+          14,
+          13,
+          12,
+          11,
+          7
+        ],
+        "start_cm": 68.0,
+        "end_cm": 320.0
+      },
+      {
+        "group": "top",
+        "rotation": 270,
+        "modules": [
+          8,
+          9,
+          10,
+          15
+        ],
+        "start_cm": 60.0,
+        "end_cm": 235.0
+      }
+    ],
+    "modules": [
+      {
+        "index": 0,
+        "code": "ZZ_М-0153",
+        "name": "Комплект для ПММ 450 (38 мм)",
+        "group": "bottom",
+        "kind": "common",
+        "width_mm": 450,
+        "height_mm": 720,
+        "depth_mm": 600,
+        "rotation": 270,
+        "footprint_cm": [
+          259.99999999999994,
+          60.0,
+          319.99999999999994,
+          105.0
+        ],
+        "has_sink": false,
+        "has_hob": false,
+        "price": 7330.0
+      },
+      {
+        "index": 1,
+        "code": "НМ_М-0072",
+        "name": "Стол с 3-мя ящиками 600 (38 мм)",
+        "group": "bottom",
+        "kind": "common",
+        "width_mm": 600,
+        "height_mm": 720,
+        "depth_mm": 600,
+        "rotation": 0,
+        "footprint_cm": [
+          160.0,
+          0.0,
+          220.0,
+          60.0
+        ],
+        "has_sink": false,
+        "has_hob": false,
+        "price": 18090.0
+      },
+      {
+        "index": 2,
+        "code": "НМ_М-0078",
+        "name": "Стол под встраиваемую технику 600 (38 мм)",
+        "group": "bottom",
+        "kind": "common",
+        "width_mm": 600,
+        "height_mm": 720,
+        "depth_mm": 600,
+        "rotation": 0,
+        "footprint_cm": [
+          110.0,
+          0.0,
+          170.0,
+          60.0
+        ],
+        "has_sink": false,
+        "has_hob": true,
+        "price": 11340.0
+      },
+      {
+        "index": 3,
+        "code": "НМ_М-0068",
+        "name": "Стол с двумя ящиками 500 (38 мм)",
+        "group": "bottom",
+        "kind": "common",
+        "width_mm": 500,
+        "height_mm": 720,
+        "depth_mm": 600,
+        "rotation": 270,
+        "footprint_cm": [
+          259.99999999999994,
+          105.0,
+          319.99999999999994,
+          155.0
+        ],
+        "has_sink": false,
+        "has_hob": false,
+        "price": 13850.0
+      },
+      {
+        "index": 4,
+        "code": "НМ_М-0068",
+        "name": "Стол с двумя ящиками 500 (38 мм)",
+        "group": "bottom",
+        "kind": "common",
+        "width_mm": 500,
+        "height_mm": 720,
+        "depth_mm": 600,
+        "rotation": 270,
+        "footprint_cm": [
+          259.99999999999994,
+          155.0,
+          319.99999999999994,
+          205.0
+        ],
+        "has_sink": false,
+        "has_hob": false,
+        "price": 13850.0
+      },
+      {
+        "index": 5,
+        "code": "НМ_М-0080",
+        "name": "Нижний модуль торцевой радиусный правый (38 мм)",
+        "group": "bottom",
+        "kind": "end_radius_facade",
+        "width_mm": 320,
+        "height_mm": 720,
+        "depth_mm": 600,
+        "rotation": 270,
+        "footprint_cm": [
+          259.99999999999994,
+          205.0,
+          319.99999999999994,
+          237.0
+        ],
+        "has_sink": false,
+        "has_hob": false,
+        "price": 19750.0
+      },
+      {
+        "index": 6,
+        "code": "НМ_М-0079",
+        "name": "Нижний модуль торцевой с дверцей левый (38 мм)",
+        "group": "bottom",
+        "kind": "end_corner_facade",
+        "width_mm": 300,
+        "height_mm": 720,
+        "depth_mm": 600,
+        "rotation": 0,
+        "footprint_cm": [
+          70.0,
+          0.0,
+          100.0,
+          60.0
+        ],
+        "has_sink": false,
+        "has_hob": false,
+        "price": 10450.0
+      },
+      {
+        "index": 7,
+        "code": "НМ_М-0133",
+        "name": "Шкаф угловой 600",
+        "group": "top",
+        "kind": "corner",
+        "width_mm": 600,
+        "height_mm": 720,
+        "depth_mm": 320,
+        "rotation": 0,
+        "footprint_cm": [
+          260.0,
+          14.0,
+          320.0,
+          46.0
+        ],
+        "has_sink": false,
+        "has_hob": false,
+        "price": 0.0
+      },
+      {
+        "index": 8,
+        "code": "НМ_М-0094",
+        "name": "Шкаф 450",
+        "group": "top",
+        "kind": "common",
+        "width_mm": 450,
+        "height_mm": 720,
+        "depth_mm": 320,
+        "rotation": 270,
+        "footprint_cm": [
+          287.99999999999994,
+          60.0,
+          319.99999999999994,
+          105.0
+        ],
+        "has_sink": false,
+        "has_hob": false,
+        "price": 5850.0
+      },
+      {
+        "index": 9,
+        "code": "НМ_М-0095",
+        "name": "Шкаф 500",
+        "group": "top",
+        "kind": "common",
+        "width_mm": 500,
+        "height_mm": 720,
+        "depth_mm": 320,
+        "rotation": 270,
+        "footprint_cm": [
+          287.99999999999994,
+          105.0,
+          319.99999999999994,
+          155.0
+        ],
+        "has_sink": false,
+        "has_hob": false,
+        "price": 5950.0
+      },
+      {
+        "index": 10,
+        "code": "НМ_М-0095",
+        "name": "Шкаф 500",
+        "group": "top",
+        "kind": "common",
+        "width_mm": 500,
+        "height_mm": 720,
+        "depth_mm": 320,
+        "rotation": 270,
+        "footprint_cm": [
+          287.99999999999994,
+          155.0,
+          319.99999999999994,
+          205.0
+        ],
+        "has_sink": false,
+        "has_hob": false,
+        "price": 5950.0
+      },
+      {
+        "index": 11,
+        "code": "НМ_М-0093",
+        "name": "Шкаф 400",
+        "group": "top",
+        "kind": "common",
+        "width_mm": 400,
+        "height_mm": 720,
+        "depth_mm": 320,
+        "rotation": 0,
+        "footprint_cm": [
+          220.0,
+          0.0,
+          260.0,
+          32.0
+        ],
+        "has_sink": false,
+        "has_hob": false,
+        "price": 5300.0
+      },
+      {
+        "index": 12,
+        "code": "НМ_М-0096",
+        "name": "Шкаф 600",
+        "group": "top",
+        "kind": "common",
+        "width_mm": 600,
+        "height_mm": 720,
+        "depth_mm": 320,
+        "rotation": 0,
+        "footprint_cm": [
+          160.0,
+          0.0,
+          220.0,
+          32.0
+        ],
+        "has_sink": false,
+        "has_hob": false,
+        "price": 7150.0
+      },
+      {
+        "index": 13,
+        "code": "НМ_М-0122",
+        "name": "Шкаф горизонтальный 600",
+        "group": "top",
+        "kind": "common",
+        "width_mm": 600,
+        "height_mm": 720,
+        "depth_mm": 320,
+        "rotation": 0,
+        "footprint_cm": [
+          100.0,
+          0.0,
+          160.0,
+          32.0
+        ],
+        "has_sink": false,
+        "has_hob": false,
+        "price": 8410.0
+      },
+      {
+        "index": 14,
+        "code": "НМ_М-0136",
+        "name": "Шкаф торцевой радиусный",
+        "group": "top",
+        "kind": "end_radius_facade",
+        "width_mm": 320,
+        "height_mm": 720,
+        "depth_mm": 320,
+        "rotation": 0,
+        "footprint_cm": [
+          68.0,
+          0.0,
+          100.0,
+          32.0
+        ],
+        "has_sink": false,
+        "has_hob": false,
+        "price": 11900.0
+      },
+      {
+        "index": 15,
+        "code": "НМ_М-0135",
+        "name": "Шкаф торцевой",
+        "group": "top",
+        "kind": "end_radius_open",
+        "width_mm": 300,
+        "height_mm": 720,
+        "depth_mm": 300,
+        "rotation": 270,
+        "footprint_cm": [
+          289.99999999999994,
+          205.0,
+          319.99999999999994,
+          235.0
+        ],
+        "has_sink": false,
+        "has_hob": false,
+        "price": 2850.0
+      },
+      {
+        "index": 16,
+        "code": "ZZ_M-0167",
+        "name": "Фасад торцевой левый 320*720",
+        "group": "top",
+        "kind": "false_facade_facade",
+        "width_mm": 18,
+        "height_mm": 720,
+        "depth_mm": 320,
+        "rotation": 90,
+        "footprint_cm": [
+          287.99999999999994,
+          237.0,
+          319.99999999999994,
+          238.8
+        ],
+        "has_sink": false,
+        "has_hob": false,
+        "price": 2550.0
+      },
+      {
+        "index": 17,
+        "code": "ZZ_М-0159",
+        "name": "Фальш-фасад для торцевого стола (левый)",
+        "group": "bottom",
+        "kind": "false_facade_facade",
+        "width_mm": 20,
+        "height_mm": 720,
+        "depth_mm": 360,
+        "rotation": 0,
+        "footprint_cm": [
+          68.0,
+          0.0,
+          70.0,
+          36.0
+        ],
+        "has_sink": false,
+        "has_hob": false,
+        "price": 2300.0
+      }
+    ]
+  },
+  "findings": [
+    {
+      "rule": "DATA-01",
+      "level": "critical",
+      "step": 0,
+      "title": "Цена модуля больше нуля",
+      "message": "У модуля «Шкаф угловой 600» (НМ_М-0133) нулевая или отрицательная цена.",
+      "modules": [
+        7
+      ],
+      "details": {
+        "price": 0.0
+      }
+    },
+    {
+      "rule": "LAYOUT-03",
+      "level": "critical",
+      "step": 0,
+      "title": "Модули не накладываются друг на друга",
+      "message": "Модули «Стол с 3-мя ящиками 600 (38 мм)» (НМ_М-0072) и «Стол под встраиваемую технику 600 (38 мм)» (НМ_М-0078) накладываются друг на друга (100 × 600 мм).",
+      "modules": [
+        1,
+        2
+      ],
+      "details": {
+        "overlap_x_mm": 100,
+        "overlap_z_mm": 600
+      }
+    },
+    {
+      "rule": "LAYOUT-04",
+      "level": "critical",
+      "step": 0,
+      "title": "Есть угловой модуль там, где кухня поворачивает",
+      "message": "Форма кухни: г-образная. Нижних угловых модулей должно быть не меньше 1, найдено 0.",
+      "modules": [],
+      "details": {
+        "shape": "L",
+        "expected": 1,
+        "found": 0
+      }
+    },
+    {
+      "rule": "LAYOUT-02",
+      "level": "warning",
+      "step": 0,
+      "title": "Нет зазоров между модулями в ряду",
+      "message": "Зазор 100 мм между модулями «Нижний модуль торцевой с дверцей левый (38 мм)» (НМ_М-0079) и «Стол под встраиваемую технику 600 (38 мм)» (НМ_М-0078) (нижние модули).",
+      "modules": [
+        6,
+        2
+      ],
+      "details": {
+        "gap_mm": 100,
+        "group": "bottom"
+      }
+    },
+    {
+      "rule": "INFO-01",
+      "level": "info",
+      "step": 3,
+      "title": "Фасады верха и низа разного цвета",
+      "message": "Фасады верхних и нижних модулей разные (материалы 1237 и 1238): в спецификации должен быть указан второй цвет.",
+      "modules": [],
+      "details": {
+        "facade_top": 1237,
+        "facade_bottom": 1238
+      }
+    },
+    {
+      "rule": "INFO-02",
+      "level": "info",
+      "step": 3,
+      "title": "В макете есть радиусные модули",
+      "message": "В макете радиусных модулей: 3. Проверьте, что радиус указан в спецификации.",
+      "modules": [
+        5,
+        14,
+        15
+      ],
+      "details": {
+        "modules": [
+          "Нижний модуль торцевой радиусный правый (38 мм)",
+          "Шкаф торцевой радиусный",
+          "Шкаф торцевой"
+        ]
+      }
+    }
+  ],
+  "summary": {
+    "critical": 3,
+    "warning": 1,
+    "info": 2
+  }
+}
